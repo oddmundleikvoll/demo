@@ -105,6 +105,7 @@ const BRANDS = {
   naturalco: { name:"NaturalCo", accent:"#2BB7A3", accent2:"#1D3B5D", heroTitle:"NaturalCo – rene ingredienser, klare resultater", heroSub:"Klinisk ryddig sortiment for daglig helse.", tag:"Leverandør av NaturalCo" }
 };
 const BRAND = { company:"Din Grossist", email:"post@dinbedrift.no", phone:"+47 00 00 00 00" };
+const VIEW_ONLY = true; // Skru på ren visning (ingen forespørsler/kurv)
 
 /* DATAKILDE */
 const SHEET_URL = null; // sett CSV-lenke fra Google Sheet hvis ønsket
@@ -170,7 +171,18 @@ function card(p){
 }
 function renderGrid(list){ els.grid.innerHTML=''; list.forEach(p=> els.grid.appendChild(card(p))); }
 
-function openModal(p, imgSrc){ currentProduct=p; els.mImg.src=imgSrc || p.image; els.mImg.alt=p.name; els.mTitle.textContent=p.name; els.mSub.textContent=p.subtitle||''; els.mCat.textContent=p.category||''; els.mDesc.textContent=p.description||''; els.mAdd.onclick=()=>{ addToCart(p, imgSrc); closeModal(); }; els.mShare.onclick=()=>{ navigator.clipboard.writeText(location.origin+location.pathname+`#${p.id}`); els.mShare.textContent='Kopiert!'; setTimeout(()=>els.mShare.textContent='Kopier lenke',1200); }; $('.modal').classList.add('open'); }
+function openModal(p, imgSrc){
+  currentProduct=p;
+  els.mImg.src=imgSrc || p.image; els.mImg.alt=p.name;
+  els.mTitle.textContent=p.name; els.mSub.textContent=p.subtitle||'';
+  els.mCat.textContent=p.category||''; els.mDesc.textContent=p.description||'';
+  if (VIEW_ONLY) { els.mAdd.style.display='none'; } else {
+    els.mAdd.style.display='';
+    els.mAdd.onclick=()=>{ addToCart(p, imgSrc); closeModal(); };
+  }
+  els.mShare.onclick=()=>{ navigator.clipboard.writeText(location.origin+location.pathname+`#${p.id}`); els.mShare.textContent='Kopiert!'; setTimeout(()=>els.mShare.textContent='Kopier lenke',1200); };
+  $('.modal').classList.add('open');
+}; els.mShare.onclick=()=>{ navigator.clipboard.writeText(location.origin+location.pathname+`#${p.id}`); els.mShare.textContent='Kopiert!'; setTimeout(()=>els.mShare.textContent='Kopier lenke',1200); }; $('.modal').classList.add('open'); }
 function closeModal(){ $('.modal').classList.remove('open'); }
 
 function addToCart(p, imgSrc){ const f = cart.find(x=>x.id===p.id); if(f){f.qty++} else {cart.push({id:p.id, name:p.name, qty:1, image: imgSrc || p.image, category:p.category})} updateCartUI(); }
@@ -200,12 +212,18 @@ function buildMailto(){
 }
 
 // Events
-$('#openCart').onclick = ()=> $('#drawer').classList.add('open');
-$('#drawer').addEventListener('click', (e)=>{ if(e.target.hasAttribute('data-close')) $('#drawer').classList.remove('open'); });
-els.sendBtn.onclick = ()=>{ if(cart.length===0){ alert('Legg til minst ett produkt via «Detaljer».'); return; } location.href = buildMailto(); };
+if (!VIEW_ONLY) {
+  $('#openCart').onclick = ()=> $('#drawer').classList.add('open');
+  $('#drawer').addEventListener('click', (e)=>{ if(e.target.hasAttribute('data-close')) $('#drawer').classList.remove('open'); });
+  els.sendBtn && (els.sendBtn.onclick = ()=>{ if(cart.length===0){ alert('Legg til minst ett produkt via «Detaljer».'); return; } location.href = buildMailto(); });
+} else {
+  // Skjul forespørsel/kurv helt
+  const btn = document.getElementById('openCart'); if(btn) btn.style.display='none';
+  const drawer = document.getElementById('drawer'); if(drawer) drawer.style.display='none';
+}
 
-document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeModal(); $('#drawer').classList.remove('open'); }});
-$$('[data-close]').forEach(el=> el.addEventListener('click', ()=>{ closeModal(); $('#drawer').classList.remove('open'); }));
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeModal(); const d=$('#drawer'); d && d.classList.remove('open'); }});
+$$('[data-close]').forEach(el=> el.addEventListener('click', ()=>{ closeModal(); const d=$('#drawer'); d && d.classList.remove('open'); }));
 
 function checkHash(){ const id = decodeURIComponent(location.hash.replace('#','')); if(!id) return; const p = PRODUCTS.find(x=>x.id===id); if(p) openModal(p, p.image); }
 window.addEventListener('hashchange', checkHash);
