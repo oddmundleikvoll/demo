@@ -21,7 +21,14 @@ Endringer:
   #bioform-embed .btn{border:0; cursor:pointer; padding:12px 16px; border-radius:12px; color:#0a0c0f; background:var(--accent); font-weight:700; transition:.2s transform ease}
   #bioform-embed .btn:hover{transform:translateY(-1px)}
   #bioform-embed .ghost{background:transparent; color:var(--text); border:1px solid #2b323a}
-  #bioform-embed .hero{padding:40px 28px 0; display:grid; grid-template-columns:1.35fr .65fr; gap:26px; align-items:center}
+  #bioform-embed .hero{position:relative; padding:56px 28px 46px; display:grid; grid-template-columns:1.25fr .75fr; gap:26px; align-items:center; border:1px solid #1b222a; border-radius:20px; overflow:hidden;
+  background-size:cover; background-position:center; background-repeat:no-repeat;
+  background-image:var(--hero-img, linear-gradient(180deg,#0f1419,#0c1015));}
+#bioform-embed .hero:before{content:""; position:absolute; inset:0; background:radial-gradient(1200px 400px at 80% 0%, rgba(116,192,252,.18), transparent), linear-gradient(180deg, rgba(11,13,16,.2), rgba(11,13,16,.75));}
+#bioform-embed .hero > *{position:relative; z-index:1}
+#bioform-embed .hero h1{font-size: clamp(34px, 4.2vw, 56px); line-height:1.04; margin:0 0 10px; letter-spacing:.2px}
+#bioform-embed .hero h1 .shine{background:linear-gradient(90deg, #fff, var(--accent), #d7fff1); -webkit-background-clip:text; background-clip:text; color:transparent}
+#bioform-embed .hero p{color:#d4dde6; margin:0; font-size:clamp(16px,1.6vw,18px)}
   #bioform-embed .hero h1{font-size: clamp(28px, 3.8vw, 48px); line-height:1.05; margin:0 0 8px}
   #bioform-embed .hero p{color:var(--muted); margin:0}
   #bioform-embed .tag{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; background:#0f1419; color:var(--muted); border:1px solid #212830; border-radius:999px; font-size:12px}
@@ -76,10 +83,10 @@ Endringer:
     <div class="brand"><div class="logo" aria-hidden="true"></div><span id="brandName">Din Grossist · Bioform</span></div>
     <div class="cta"><button class="btn ghost" id="openCart">Forespørsel (0)</button><a class="btn" id="contactBtn" href="#kontakt">Kontakt oss</a></div>
   </header>
-  <section class="wrap hero">
+  <section class="wrap hero" id="hero">
     <div>
       <span class="tag" id="brandTag">Leverandør av Bioform</span>
-      <h1 id="heroTitle">Bioform – pålitelig kvalitet til din butikk</h1>
+      <h1 id="heroTitle"><span class="shine">Bioform</span> – pålitelig kvalitet til din butikk</h1>
       <p id="heroSub">Rask levering fra autorisert grossist. Produktutvalg som dekker hverdagsbehovene.</p>
       <div class="actions" style="margin-top:14px"><button class="btn" id="browseBtn">Se produkter</button></div>
     </div>
@@ -101,8 +108,8 @@ Endringer:
 <script>
 /* BRAND & PALETTER */
 const BRANDS = {
-  bioform: { name:"Bioform", accent:"#2FBF71", accent2:"#74C0FC", heroTitle:"Bioform – pålitelig kvalitet til din butikk", heroSub:"Rask levering fra autorisert grossist. Produktutvalg som dekker hverdagsbehovene.", tag:"Leverandør av Bioform" },
-  naturalco: { name:"NaturalCo", accent:"#2BB7A3", accent2:"#1D3B5D", heroTitle:"NaturalCo – rene ingredienser, klare resultater", heroSub:"Klinisk ryddig sortiment for daglig helse.", tag:"Leverandør av NaturalCo" }
+  bioform: { name:"Bioform", accent:"#2FBF71", accent2:"#74C0FC", heroTitle:"Bioform – pålitelig kvalitet til din butikk", heroSub:"Rask levering fra autorisert grossist. Produktutvalg som dekker hverdagsbehovene.", tag:"Leverandør av Bioform", heroImage:"https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1920&auto=format&fit=crop" },
+  naturalco: { name:"NaturalCo", accent:"#2BB7A3", accent2:"#1D3B5D", heroTitle:"NaturalCo – rene ingredienser, klare resultater", heroSub:"Klinisk ryddig sortiment for daglig helse.", tag:"Leverandør av NaturalCo", heroImage:"https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?q=80&w=1920&auto=format&fit=crop" }
 };
 const BRAND = { company:"Din Grossist", email:"post@dinbedrift.no", phone:"+47 00 00 00 00" };
 const VIEW_ONLY = true; // Skru på ren visning (ingen forespørsler/kurv)
@@ -133,7 +140,20 @@ const PRODUCTS_STATIC = [
 const $ = (s, r=document) => r.querySelector(s);
 const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
 function getBrandKey(){ const hostAttr = document.getElementById('bioform-embed').dataset.brand; const urlParam = new URLSearchParams(location.search).get('brand'); return (urlParam || hostAttr || 'bioform').toLowerCase(); }
-function applyBrandTheme(b){ document.documentElement.style.setProperty('--accent', b.accent); document.documentElement.style.setProperty('--accent-2', b.accent2||'#74C0FC'); $('#brandName').textContent = `${BRAND.company} · ${b.name}`; $('#brandName2').textContent = BRAND.company; $('#contactEmail').textContent = BRAND.email; $('#contactEmail').href = `mailto:${BRAND.email}`; $('#contactPhone').textContent = BRAND.phone; $('#brandTag').textContent = `Leverandør av ${b.name}`; $('#heroTitle').textContent = b.heroTitle; $('#heroSub').textContent = b.heroSub; $('#year').textContent = new Date().getFullYear(); }
+function applyBrandTheme(b){
+  document.documentElement.style.setProperty('--accent', b.accent);
+  document.documentElement.style.setProperty('--accent-2', b.accent2||'#74C0FC');
+  const heroEl = document.getElementById('hero');
+  if(heroEl){ heroEl.style.setProperty('--hero-img', `url('${b.heroImage||''}')`); }
+  $('#brandName').textContent = `${BRAND.company} · ${b.name}`;
+  $('#brandName2').textContent = BRAND.company;
+  $('#contactEmail').textContent = BRAND.email; $('#contactEmail').href = `mailto:${BRAND.email}`;
+  $('#contactPhone').textContent = BRAND.phone;
+  $('#brandTag').textContent = `Leverandør av ${b.name}`;
+  $('#heroTitle').innerHTML = `<span class="shine">${b.name}</span> – ${b.heroTitle.split('–')[1]||b.heroTitle}`;
+  $('#heroSub').textContent = b.heroSub;
+  $('#year').textContent = new Date().getFullYear();
+} · ${b.name}`; $('#brandName2').textContent = BRAND.company; $('#contactEmail').textContent = BRAND.email; $('#contactEmail').href = `mailto:${BRAND.email}`; $('#contactPhone').textContent = BRAND.phone; $('#brandTag').textContent = `Leverandør av ${b.name}`; $('#heroTitle').textContent = b.heroTitle; $('#heroSub').textContent = b.heroSub; $('#year').textContent = new Date().getFullYear(); }
 
 /* LAST DATA */
 async function loadProducts(){
