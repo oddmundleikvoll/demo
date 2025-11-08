@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bioform – grossist demo</title>
+</head>
+<body>
+
+<!-- START: din embed-kode -->
+<!-- Bioform grossist – Framer/Webflow embed-snutt (én blokk)
+Bruk: Sett inn en Embed/Custom Code-blokk og lim inn HELE denne koden.
+Tips: Endre BRAND og PRODUCTS under. Støtter flere merker med data-brand/ ?brand= -->
+
+<style>
+  :root{
+    --bg: #0b0d10; --card:#12161b; --muted:#a8b3bf; --text:#e8f0f7;
+    --accent:#2FBF71; --accent-2:#74c0fc; --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.35);
+    --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, "Helvetica Neue", Arial;
+  }
+  #bioform-embed *{box-sizing:border-box}
+  #bioform-embed{background:var(--bg); color:var(--text); font-family:var(--font); border-radius:20px; overflow:hidden}
+  #bioform-embed .wrap{max-width:1100px; margin:0 auto; padding:28px}
+  #bioform-embed .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 28px; background:linear-gradient(180deg, rgba(11,13,16,.95), rgba(11,13,16,.6) 60%, rgba(11,13,16,0)); position:sticky; top:0; z-index:5}
+  #bioform-embed .brand{display:flex; align-items:center; gap:12px; font-weight:700}
+  #bioform-embed .logo{ width:36px; height:36px; border-radius:10px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 6px 18px rgba(47,191,113,.35)}
+  #bioform-embed .btn{border:0; cursor:pointer; padding:12px 16px; border-radius:12px; color:#0a0c0f; background:var(--accent); font-weight:700; transition:.2s transform ease}
+  #bioform-embed .btn:hover{transform:translateY(-1px)}
+  #bioform-embed .ghost{background:transparent; color:var(--text); border:1px solid #2b323a}
+  #bioform-embed .hero{padding:40px 28px 10px; display:grid; grid-template-columns:1.35fr .65fr; gap:26px; align-items:center}
+  #bioform-embed .hero h1{font-size: clamp(28px, 3.8vw, 48px); line-height:1.05; margin:0 0 12px}
+  #bioform-embed .hero p{color:var(--muted); margin:0 0 16px}
+  #bioform-embed .tag{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; background:#0f1419; color:var(--muted); border:1px solid #212830; border-radius:999px; font-size:12px}
+  #bioform-embed .heroCard{background:radial-gradient(1200px 400px at 80% 0%, rgba(116,192,252,.12), transparent), linear-gradient(180deg, #0f1419, #0c1015); border:1px solid #1d2530; border-radius:var(--radius); padding:20px; box-shadow:var(--shadow)}
+  #bioform-embed .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; margin-top:28px}
+  #bioform-embed .card{background:var(--card); border:1px solid #1b222a; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column}
+  #bioform-embed .card .img{aspect-ratio: 4/3; background:#0f1419; display:flex; align-items:center; justify-content:center; overflow:hidden}
+  #bioform-embed .card img{width:100%; height:100%; object-fit:cover}
+  #bioform-embed .card .body{padding:14px 14px 16px; display:flex; flex-direction:column; gap:8px}
+  #bioform-embed .title{font-weight:700}
+  #bioform-embed .sub{color:var(--muted); font-size:14px}
+  #bioform-embed .pill{display:inline-flex; align-items:center; gap:6px; font-size:12px; color:var(--text); background:#0f1419; border:1px solid #202832; padding:6px 10px; border-radius:999px}
+  #bioform-embed .filters{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 6px}
+  #bioform-embed .filters button{background:#0f1419; color:var(--muted); border:1px solid #202832; padding:8px 12px; border-radius:999px; cursor:pointer}
+  #bioform-embed .filters button.active{color:#0a0c0f; background:var(--accent); border-color:transparent}
+  #bioform-embed .drawer{position:fixed; inset:0; display:none}
+  #bioform-embed .drawer.open{display:block}
+  #bioform-embed .backdrop{position:absolute; inset:0; background:rgba(6,8,10,.6)}
+  #bioform-embed .panel{position:absolute; right:0; top:0; height:100%; width:min(480px, 92vw); background:#0f1419; border-left:1px solid #1b222a; display:flex; flex-direction:column}
+  #bioform-embed .panel header{padding:16px 18px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #1b222a}
+  #bioform-embed .panel main{padding:14px 18px; overflow:auto; display:flex; flex-direction:column; gap:10px}
+  #bioform-embed .line{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px; border:1px solid #1b222a; border-radius:12px}
+  #bioform-embed .line small{color:var(--muted)}
+  #bioform-embed .panel footer{padding:16px 18px; border-top:1px solid #1b222a}
+  #bioform-embed .input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid #26303a; background:#0b0f14; color:var(--text)}
+  #bioform-embed .modal{position:fixed; inset:0; display:none}
+  #bioform-embed .modal.open{display:block}
+  #bioform-embed .modal .backdrop{background:rgba(6,8,10,.7)}
+  #bioform-embed .modal .sheet{position:absolute; inset: auto 0 0 0; margin:auto; max-width:860px; background:#0f1419; border:1px solid #1b222a; border-radius:18px; padding:0; overflow:hidden; box-shadow: 0 30px 80px rgba(0,0,0,.55)}
+  #bioform-embed .sheet .row{display:grid; grid-template-columns: 1.1fr .9fr}
+  #bioform-embed .sheet .media{min-height:360px; background:#0b0f14; display:flex; align-items:center; justify-content:center}
+  #bioform-embed .sheet .media img{max-width:100%; max-height:400px; object-fit:contain}
+  #bioform-embed .sheet .content{padding:18px}
+  #bioform-embed .sheet h3{margin:0 0 6px}
+  #bioform-embed .chip{display:inline-flex; gap:8px; align-items:center; color:#0a0c0f; background:var(--accent); padding:6px 10px; border-radius:999px; font-weight:700; font-size:12px}
+  #bioform-embed .footer{margin:40px 0 80px; color:var(--muted); font-size:14px}
+  @media (max-width: 900px){ #bioform-embed .hero{grid-template-columns:1fr} #bioform-embed .grid{grid-template-columns:1fr 1fr} #bioform-embed .sheet .row{grid-template-columns:1fr} }
+  @media (max-width: 620px){ #bioform-embed .grid{grid-template-columns:1fr} }
+</style>
+
+<div id="bioform-embed" data-brand="bioform">
+  <header class="nav">
+    <div class="brand"><div class="logo" aria-hidden="true"></div><span id="brandName">Din Grossist · Bioform</span></div>
+    <div class="cta"><button class="btn ghost" id="openCart">Forespørsel · 0</button><a class="btn" id="contactBtn" href="#kontakt">Kontakt oss</a></div>
+  </header>
+  <section class="wrap hero">
+    <div>
+      <span class="tag" id="brandTag">Leverandør av Bioform</span>
+      <h1 id="heroTitle">Bioform – pålitelig kvalitet til din butikk</h1>
+      <p id="heroSub">Rask levering fra autorisert grossist. Produktutvalg som dekker hverdagsbehovene.</p>
+      <div class="actions"><button class="btn" id="browseBtn">Se produkter</button><button class="btn ghost" id="moreInfoBtn">Hvordan fungerer dette?</button></div>
+    </div>
+    <div class="heroCard"><strong>Redigerbart uten backend</strong>
+      <ul style="margin:10px 0 0; padding-left:18px; color:var(--muted)">
+        <li>Data kan ligge i koden eller i Google Sheet</li>
+        <li>Kunder legger i forespørselskurv</li>
+        <li>“Send forespørsel” e-post til dere</li>
+      </ul>
+    </div>
+  </section>
+  <section class="wrap" id="catalog"><div class="filters" id="filters"></div><div class="grid" id="grid"></div></section>
+  <section class="wrap footer" id="kontakt">
+    <p><strong>Kontakt:</strong> <a id="contactEmail" href="#" style="color:var(--accent)">post@dinbedrift.no</a> · Telefon: <span id="contactPhone">+47 00 00 00 00</span></p>
+    <p>© <span id="year"></span> <span id="brandName2">Din Grossist</span>. Bioform er et registrert varemerke – brukt med tillatelse.</p>
+  </section>
+</div>
+
+<!-- Drawer / Cart -->
+<div class="drawer" id="drawer"><div class="backdrop" data-close></div><aside class="panel"><header><strong>Forespørselskurv</strong><button class="btn ghost" data-close>Lukk</button></header><main id="cartLines"></main><footer><div style="display:grid; gap:10px"><input class="input" id="buyerName" placeholder="Ditt navn / butikk" /><input class="input" id="buyerEmail" placeholder="Din e-post" /><input class="input" id="buyerPhone" placeholder="Telefon" /><textarea class="input" id="buyerNote" placeholder="Notat (valgfritt)" rows="3"></textarea><button class="btn" id="sendBtn">Send forespørsel</button></div></footer></aside></div>
+
+<!-- Product modal -->
+<div class="modal" id="modal"><div class="backdrop" data-close></div><div class="sheet"><div class="row"><div class="media"><img id="mImg" alt="" /></div><div class="content"><div style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px"><div><h3 id="mTitle">Produkt</h3><div class="sub" id="mSub"></div></div><button class="btn ghost" data-close>Lukk</button></div><div class="pill" id="mCat">Kategori</div><p id="mDesc" style="color:var(--muted);"></p><div style="display:flex; gap:10px; margin-top:6px"><button class="btn" id="mAdd">Legg i forespørsel</button><button class="btn ghost" id="mShare">Kopier lenke</button></div></div></div></div></div>
+
+<script>
+/* =====================
+   BRAND & PALETTER
+===================== */
+const BRANDS = {
+  bioform: { name:"Bioform", accent:"#2FBF71", accent2:"#74C0FC", heroTitle:"Bioform – pålitelig kvalitet til din butikk", heroSub:"Rask levering fra autorisert grossist. Produktutvalg som dekker hverdagsbehovene.", tag:"Leverandør av Bioform" },
+  naturalco: { name:"NaturalCo", accent:"#2BB7A3", accent2:"#1D3B5D", heroTitle:"NaturalCo – rene ingredienser, klare resultater", heroSub:"Klinisk ryddig sortiment for daglig helse.", tag:"Leverandør av NaturalCo" }
+};
+const BRAND = { company:"Din Grossist", email:"post@dinbedrift.no", phone:"+47 00 00 00 00" };
+
+/* =====================
+   DATAKILDE – produkter
+   Bytt til CSV/Sheet senere ved å sette SHEET_URL
+===================== */
+const SHEET_URL = null; // f.eks. 'https://docs.google.com/spreadsheets/d/.../pub?output=csv'
+
+// Katalog – eksempelutvalg fra Bioform-portfolio (navn og kategorier er generiske / nøytrale)
+const PRODUCTS_STATIC = [
+  {id:"arctic-omega3", brand:"bioform", name:"Arctic Omega-3", subtitle:"EPA/DHA daglig", category:"Kosttilskudd", image:"https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&auto=format&fit=crop&q=60", description:"Konsentrert fiskeolje. Nøytral smak. For daglig vedlikehold."},
+  {id:"arctic-krill-omega3", brand:"bioform", name:"Arctic Krill Omega-3", subtitle:"120 kapsler", category:"Kosttilskudd", image:"https://images.unsplash.com/photo-1612536057932-04aa7a9cb7ba?w=1200&auto=format&fit=crop&q=60", description:"Krill-olje i kapsler. Praktisk dagsdose."},
+  {id:"arctic-c-plus", brand:"bioform", name:"Arctic C+", subtitle:"Vitamin C daglig", category:"Vitaminer", image:"https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=1200&auto=format&fit=crop&q=60", description:"Vitamin C-tabletter for daglig bruk."},
+  {id:"arctic-rosenrot", brand:"bioform", name:"Arctic Rosenrot", subtitle:"60 kapsler", category:"Urter i kapsler", image:"https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&auto=format&fit=crop&q=60", description:"Rosenrot-urtekapsler."},
+  {id:"arctic-kelp", brand:"bioform", name:"Arctic Kelp", subtitle:"Jodkilde", category:"Mineraler", image:"https://images.unsplash.com/photo-1548247416-ec66f4900b2f?w=1200&auto=format&fit=crop&q=60", description:"Tangkapsler fra nordlige farvann."},
+  {id:"gurkemeie-k2", brand:"bioform", name:"Gurkemeie m/K2", subtitle:"120 kapsler", category:"Urter i kapsler", image:"https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=1200&auto=format&fit=crop&q=60", description:"Gurkemeie-kompleks i kapsler."},
+  {id:"mariatistel", brand:"bioform", name:"Mariatistel", subtitle:"60 kapsler", category:"Urter i kapsler", image:"https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=1200&auto=format&fit=crop&q=60", description:"Mariatistel-urtekapsler."},
+  {id:"blabaer-krekling", brand:"bioform", name:"Blåbær & Krekling", subtitle:"60 kapsler", category:"Urter i kapsler", image:"https://images.unsplash.com/photo-1623065425901-2bb18ce87140?w=1200&auto=format&fit=crop&q=60", description:"Bærekombinasjon i kapsler."},
+  {id:"ashwagandha", brand:"bioform", name:"Ashwagandha", subtitle:"60 kapsler", category:"Urter i kapsler", image:"https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=1200&auto=format&fit=crop&q=60", description:"Urtekapsler."},
+  {id:"afrikansk-mango", brand:"bioform", name:"Afrikansk Mango", subtitle:"60 kapsler", category:"Urter i kapsler", image:"https://images.unsplash.com/photo-1560807707-8cc77767d783?w=1200&auto=format&fit=crop&q=60", description:"Frøekstrakt i kapsler."},
+  {id:"broncilan", brand:"bioform", name:"Broncilan", subtitle:"200 ml", category:"Urtedrikker", image:"https://images.unsplash.com/photo-1600359756097-c7fe28d80b2d?w=1200&auto=format&fit=crop&q=60", description:"Urtedrikk."},
+  {id:"chaga-ekstrakt", brand:"bioform", name:"Arctic Chaga ekstrakt", subtitle:"100 ml", category:"Urtedrikker", image:"https://images.unsplash.com/photo-1615486364131-02fa3cd00b1a?w=1200&auto=format&fit=crop&q=60", description:"Ekstrakt fra chaga."},
+  {id:"multi-vitamin", brand:"bioform", name:"Multivitamin", subtitle:"Daglig", category:"Vitaminer", image:"https://images.unsplash.com/photo-1600434107400-8c41be4b25f2?w=1200&auto=format&fit=crop&q=60", description:"Daglig multivitamin."},
+  {id:"magnesium", brand:"bioform", name:"Magnesium", subtitle:"250 mg", category:"Mineraler", image:"https://images.unsplash.com/photo-1573883431205-98b5f10d5d2a?w=1200&auto=format&fit=crop&q=60", description:"Magnesiumtabletter."},
+  {id:"d3-vitamin", brand:"bioform", name:"Vitamin D3", subtitle:"Daglig", category:"Vitaminer", image:"https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=1200&auto=format&fit=crop&q=60", description:"D3-vitamin."}
+];
+
+/* =====================
+   HJELPEFUNKSJONER
+===================== */
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+function getBrandKey(){
+  const hostAttr = document.getElementById('bioform-embed').dataset.brand;
+  const urlParam = new URLSearchParams(location.search).get('brand');
+  return (urlParam || hostAttr || 'bioform').toLowerCase();
+}
+function applyBrandTheme(b){
+  document.documentElement.style.setProperty('--accent', b.accent);
+  document.documentElement.style.setProperty('--accent-2', b.accent2||'#74C0FC');
+  $('#brandName').textContent = `${BRAND.company} · ${b.name}`;
+  $('#brandName2').textContent = BRAND.company;
+  $('#contactEmail').textContent = BRAND.email; $('#contactEmail').href = `mailto:${BRAND.email}`;
+  $('#contactPhone').textContent = BRAND.phone;
+  $('#brandTag').textContent = `Leverandør av ${b.name}`;
+  $('#heroTitle').textContent = b.heroTitle; $('#heroSub').textContent = b.heroSub;
+  $('#year').textContent = new Date().getFullYear();
+}
+
+/* =====================
+   LASTE DATA (Sheet eller statisk)
+===================== */
+async function loadProducts(){
+  if(!SHEET_URL) return PRODUCTS_STATIC;
+  const csv = await fetch(SHEET_URL).then(r=>r.text());
+  const rows = csv.trim().split(/\r?\n/).map(r=>r.split(','));
+  const head = rows.shift().map(x=>x.trim());
+  return rows.map(r=> Object.fromEntries(r.map((v,i)=>[head[i], v.trim()])));
+}
+
+/* =====================
+   RENDER
+===================== */
+const els = { grid: $('#grid'), filters: $('#filters'), cartBtn: $('#openCart'), drawer: $('#drawer'), cartLines: $('#cartLines'), sendBtn: $('#sendBtn'), buyerName: $('#buyerName'), buyerEmail: $('#buyerEmail'), buyerPhone: $('#buyerPhone'), buyerNote: $('#buyerNote'), modal: $('#modal'), mImg: $('#mImg'), mTitle: $('#mTitle'), mSub: $('#mSub'), mCat: $('#mCat'), mDesc: $('#mDesc'), mAdd: $('#mAdd'), mShare: $('#mShare') };
+let cart = []; let currentProduct = null; let PRODUCTS = [];
+
+function buildFilters(list){
+  const cats = Array.from(new Set(list.map(p=>p.category))).sort();
+  els.filters.innerHTML = '';
+  const all = document.createElement('button'); all.textContent='Alle'; all.className='active'; els.filters.appendChild(all);
+  cats.forEach(c=>{ const b=document.createElement('button'); b.textContent=c; els.filters.appendChild(b); });
+  els.filters.onclick = (e)=>{
+    if(e.target.tagName!=='BUTTON') return;
+    $$('#filters button').forEach(b=>b.classList.remove('active')); e.target.classList.add('active');
+    const cat = e.target.textContent; renderGrid(cat==='Alle'? PRODUCTS : PRODUCTS.filter(p=>p.category===cat));
+  };
+}
+function card(p){
+  const el = document.createElement('article'); el.className='card';
+  el.innerHTML = `<div class="img"><img loading="lazy" alt="${p.name}" src="${p.image}"/></div>
+    <div class="body"><div class="title">${p.name}</div><div class="sub">${p.subtitle||''}</div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px">
+      <span class="pill">${p.category||''}</span>
+      <div class="actions"><button class="btn ghost" data-view>Detaljer</button><button class="btn" data-add>Legg til</button></div>
+    </div></div>`;
+  el.querySelector('[data-view]').onclick = ()=> openModal(p);
+  el.querySelector('[data-add]').onclick = ()=> addToCart(p);
+  return el;
+}
+function renderGrid(list){ els.grid.innerHTML=''; list.forEach(p=> els.grid.appendChild(card(p))); }
+
+function openModal(p){ currentProduct=p; els.mImg.src=p.image; els.mImg.alt=p.name; els.mTitle.textContent=p.name; els.mSub.textContent=p.subtitle||''; els.mCat.textContent=p.category||''; els.mDesc.textContent=p.description||''; els.mAdd.onclick=()=>{ addToCart(p); closeModal(); }; els.mShare.onclick=()=>{ navigator.clipboard.writeText(location.origin+location.pathname+`#${p.id}`); els.mShare.textContent='Kopiert!'; setTimeout(()=>els.mShare.textContent='Kopier lenke',1200); }; $('#modal').classList.add('open'); }
+function closeModal(){ $('#modal').classList.remove('open'); }
+
+function addToCart(p){ const f = cart.find(x=>x.id===p.id); if(f){f.qty++} else {cart.push({id:p.id, name:p.name, qty:1})} updateCartUI(); }
+function removeFromCart(id){ cart = cart.filter(x=>x.id!==id); updateCartUI(); }
+function updateCartUI(){ $('#openCart').textContent = `Forespørsel · ${cart.reduce((a,b)=>a+b.qty,0)}`; els.cartLines.innerHTML=''; if(cart.length===0){ els.cartLines.innerHTML = '<p style="color:var(--muted)">Ingen produkter i forespørselen ennå.</p>'; return; } cart.forEach(item=>{ const p=PRODUCTS.find(pp=>pp.id===item.id) || {name:item.id, category:''}; const row=document.createElement('div'); row.className='line'; row.innerHTML = `<div><strong>${p.name}</strong><br><small>${p.category||''}</small></div><div style="display:flex; align-items:center; gap:8px"><button class="btn ghost" data-dec>-</button><span>${item.qty}</span><button class="btn ghost" data-inc>+</button><button class="btn" data-del>Fjern</button></div>`; row.querySelector('[data-dec]').onclick=()=>{ item.qty=Math.max(1,item.qty-1); updateCartUI(); }; row.querySelector('[data-inc]').onclick=()=>{ item.qty++; updateCartUI(); }; row.querySelector('[data-del]').onclick=()=> removeFromCart(item.id); els.cartLines.appendChild(row); }); }
+
+function buildMailto(){ const lines = cart.map(it=>{ const p=PRODUCTS.find(pp=>pp.id===it.id) || {name:it.id}; return `- ${p.name} (x${it.qty})`; }).join('%0D%0A'); const buyer = `Navn/Butikk: ${encodeURIComponent(els.buyerName.value||'')}%0D%0AE-post: ${encodeURIComponent(els.buyerEmail.value||'')}%0D%0ATelefon: ${encodeURIComponent(els.buyerPhone.value||'')}%0D%0ANotat: ${encodeURIComponent(els.buyerNote.value||'')}`; const subject = encodeURIComponent(`Forespørsel – ${BRAND.company}`); const body = `${lines}%0D%0A%0D%0A${buyer}`; return `mailto:${encodeURIComponent(BRAND.email)}?subject=${subject}&body=${body}`; }
+
+// Events
+$('#openCart').onclick = ()=> $('#drawer').classList.add('open');
+$('#drawer').addEventListener('click', (e)=>{ if(e.target.hasAttribute('data-close')) $('#drawer').classList.remove('open'); });
+els.sendBtn.onclick = ()=>{ if(cart.length===0){ alert('Legg til minst ett produkt.'); return; } location.href = buildMailto(); };
+
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeModal(); $('#drawer').classList.remove('open'); }});
+$$('[data-close]').forEach(el=> el.addEventListener('click', ()=>{ closeModal(); $('#drawer').classList.remove('open'); }));
+
+function checkHash(){ const id = decodeURIComponent(location.hash.replace('#','')); if(!id) return; const p = PRODUCTS.find(x=>x.id===id); if(p) openModal(p); }
+window.addEventListener('hashchange', checkHash);
+
+// Kickoff
+(async function init(){
+  const key = getBrandKey(); const b = BRANDS[key] || BRANDS.bioform; applyBrandTheme(b);
+  const data = await loadProducts();
+  PRODUCTS = (data||PRODUCTS_STATIC).filter(p=> (p.brand||'bioform').toLowerCase() === key);
+  buildFilters(PRODUCTS); renderGrid(PRODUCTS); checkHash();
+  document.getElementById('browseBtn').onclick = ()=> document.getElementById('catalog').scrollIntoView({behavior:'smooth'});
+  document.getElementById('moreInfoBtn').onclick = ()=> alert('Dette er en innebygd, dataklar produktkatalog for grossist. Endre BRAND for e-post/telefon. Du kan senere sette SHEET_URL for å redigere produkter i Google Sheet. For flere merker: bruk data-brand på containeren eller ?brand= i URL.');
+})();
+</script>
+<!-- SLUTT: din embed-kode -->
+
+</body>
+</html>
