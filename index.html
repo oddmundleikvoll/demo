@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="no">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Bioform – grossistvisning</title>
-  <meta name="description" content="Bioform-produkter – visning fra autorisert grossist." />
+  <title>Superhuman — Health Supplements Wholesale</title>
+  <meta name="description" content="Superhuman is a wholesale exporter of premium health supplements at fair prices." />
   <style>
     :root{
       --bg:#0b0d10; --surface:#12161b; --muted:#a8b3bf; --text:#e8f0f7;
@@ -13,16 +13,15 @@
     }
     *{box-sizing:border-box}
     html,body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font)}
-    a{color:inherit}
+    a{color:inherit;text-decoration:none}
 
     /* Topbar */
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 28px}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
     .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 6px 18px rgba(47,191,113,.35)}
     .btn{border:0;cursor:pointer;padding:12px 16px;border-radius:12px;color:#0a0c0f;background:var(--accent);font-weight:700;transition:.2s transform ease}
     .btn:hover{transform:translateY(-1px)}
     .ghost{background:transparent;color:var(--text);border:1px solid #2b323a}
-
     .wrap{max-width:1100px;margin:0 auto;padding:0 28px}
 
     /* Hero */
@@ -30,7 +29,7 @@
     .hero-bg{
       position:absolute;inset:0;background:
         radial-gradient(1200px 400px at 80% 0%, rgba(116,192,252,.18), transparent),
-        linear-gradient(180deg, rgba(11,13,16,.2), rgba(11,13,16,.75)),
+        linear-gradient(180deg, rgba(11,13,16,.2), rgba(11,13,16,.8)),
         url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1920&auto=format&fit=crop');
       background-size:cover;background-position:center;
       filter:saturate(.95);
@@ -41,6 +40,11 @@
     h1 .shine{background:linear-gradient(90deg,#fff,var(--accent),#d7fff1);-webkit-background-clip:text;background-clip:text;color:transparent}
     .lead{color:#d4dde6;margin:0 0 18px;font-size:clamp(16px,1.6vw,18px)}
     .actions{display:flex;gap:10px}
+
+    /* Partner logos */
+    .partners{display:flex;align-items:center;gap:16px;margin-top:10px;opacity:.9}
+    .biolab-badge{display:inline-flex;align-items:center;gap:10px;background:#0f1419;border:1px solid #22303b;border-radius:12px;padding:8px 12px}
+    .biolab-badge svg{width:88px;height:22px;display:block}
 
     /* Filters & grid */
     .filters{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 10px}
@@ -60,12 +64,17 @@
     .modal{position:fixed;inset:0;display:none}
     .modal.open{display:block}
     .modal .backdrop{position:absolute;inset:0;background:rgba(6,8,10,.7)}
-    .sheet{position:absolute;inset:auto 0 0 0;margin:auto;max-width:860px;background:#0f1419;border:1px solid #1b222a;border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+    .sheet{position:absolute;inset:auto 0 0 0;margin:auto;max-width:920px;background:#0f1419;border:1px solid #1b222a;border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55)}
     .sheet .cols{display:grid;grid-template-columns:1.1fr .9fr}
     .sheet .media{min-height:360px;background:#0b0f14;display:flex;align-items:center;justify-content:center}
     .sheet .media img{max-width:100%;max-height:420px;object-fit:contain}
     .sheet .content{padding:18px}
-    .sheet h3{margin:0 0 6px}
+    .tabs{display:flex;gap:8px;margin:12px 0}
+    .tab{padding:8px 12px;border-radius:10px;border:1px solid #22303b;background:#0f1419;color:var(--muted);cursor:pointer}
+    .tab.active{background:var(--accent);color:#0a0c0f;border-color:transparent}
+    .panel{display:none;color:#cfd8e3}
+    .panel.active{display:block}
+
     .footer{margin:40px 0 80px;color:var(--muted);font-size:14px}
     @media (max-width:900px){
       .hero-inner{grid-template-columns:1fr}
@@ -80,10 +89,11 @@
   <header class="nav">
     <div class="brand">
       <div class="logo" aria-hidden="true"></div>
-      <span id="brandName">Din Grossist · Bioform</span>
+      <span id="brandName">Superhuman · Biolab</span>
     </div>
     <div class="actions">
-      <a class="btn" href="#kontakt">Kontakt oss</a>
+      <a class="btn ghost" href="about.html">About us</a>
+      <a class="btn" href="#contact">Contact</a>
     </div>
   </header>
 
@@ -91,11 +101,27 @@
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="hero-inner wrap">
       <div>
-        <span class="tag" id="brandTag">Leverandør av Bioform</span>
-        <h1><span class="shine">Bioform</span> – pålitelig kvalitet til din butikk</h1>
-        <p class="lead">Rask levering fra autorisert grossist. Produktutvalg som dekker hverdagsbehovene.</p>
+        <span class="tag" id="brandTag">Authorized wholesale / exporter</span>
+        <h1><span class="shine">Superhuman</span> — premium health supplements, fairly priced</h1>
+        <p class="lead">Reliable supply, clear terms, and fast dispatch. Explore a curated selection from trusted Nordic producers.</p>
         <div class="actions">
-          <button class="btn" id="browseBtn">Se produkter</button>
+          <button class="btn" id="browseBtn">Browse products</button>
+        </div>
+
+        <!-- Partner: Biolab -->
+        <div class="partners" aria-label="Partner">
+          <span class="biolab-badge" title="Biolab">
+            <!-- Simple inline 'Biolab' wordmark (SVG) -->
+            <svg viewBox="0 0 420 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="4" y="20" width="96" height="80" rx="16" fill="url(#g)"/>
+              <defs>
+                <linearGradient id="g" x1="4" y1="20" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#2FBF71"/><stop offset="1" stop-color="#74C0FC"/>
+                </linearGradient>
+              </defs>
+              <text x="120" y="78" font-family="Inter, Segoe UI, Arial" font-size="56" font-weight="800" fill="#e8f0f7">Biolab</text>
+            </svg>
+          </span>
         </div>
       </div>
       <div></div>
@@ -107,13 +133,13 @@
     <div class="grid" id="grid"></div>
   </main>
 
-  <section class="wrap footer" id="kontakt">
-    <p><strong>Kontakt:</strong> <a id="contactEmail" href="mailto:post@dinbedrift.no" style="color:var(--accent)">post@dinbedrift.no</a> ·
-      Telefon: <span id="contactPhone">+47 00 00 00 00</span></p>
-    <p>© <span id="year"></span> <span id="brandName2">Din Grossist</span>. Bioform er et registrert varemerke – brukt med tillatelse.</p>
+  <section class="wrap footer" id="contact">
+    <p><strong>Contact:</strong> <a id="contactEmail" href="mailto:hello@superhuman.global" style="color:var(--accent)">hello@superhuman.global</a> ·
+      Phone: <span id="contactPhone">+47 00 00 00 00</span></p>
+    <p>© <span id="year"></span> <span id="brandName2">Superhuman</span>. Trademarks belong to their owners.</p>
   </section>
 
-  <!-- Produktmodal -->
+  <!-- Product modal -->
   <div class="modal" id="modal" aria-hidden="true">
     <div class="backdrop" data-close></div>
     <div class="sheet">
@@ -122,15 +148,27 @@
         <div class="content">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px">
             <div>
-              <h3 id="mTitle">Produkt</h3>
+              <h3 id="mTitle">Product</h3>
               <div class="sub" id="mSub"></div>
             </div>
-            <button class="btn ghost" data-close>Lukk</button>
+            <button class="btn ghost" data-close>Close</button>
           </div>
-          <div class="pill" id="mCat">Kategori</div>
-          <p id="mDesc" style="color:var(--muted);margin-top:10px"></p>
-          <div style="display:flex;gap:10px;margin-top:6px">
-            <button class="btn ghost" id="mShare">Kopier lenke</button>
+          <div class="pill" id="mCat">Category</div>
+
+          <div class="tabs" role="tablist">
+            <button class="tab active" data-tab="benefits">Benefits</button>
+            <button class="tab" data-tab="ingredients">Ingredients</button>
+            <button class="tab" data-tab="usage">Usage</button>
+            <button class="tab" data-tab="packaging">Packaging</button>
+          </div>
+
+          <div id="benefits" class="panel active"></div>
+          <div id="ingredients" class="panel"></div>
+          <div id="usage" class="panel"></div>
+          <div id="packaging" class="panel"></div>
+
+          <div style="display:flex;gap:10px;margin-top:14px">
+            <button class="btn ghost" id="mShare">Copy link</button>
           </div>
         </div>
       </div>
@@ -138,27 +176,185 @@
   </div>
 
 <script>
-  // --- Konfig ---
-  const BRAND = { company:"Din Grossist", email:"post@dinbedrift.no", phone:"+47 00 00 00 00" };
-  const HERO_IMAGE = "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1920&auto=format&fit=crop"; // nordlys (fri bruk)
+  // --- Company info ---
+  const BRAND = { company:"Superhuman", email:"hello@superhuman.global", phone:"+47 00 00 00 00" };
 
-  // Demo-produkter (bilder fra Unsplash – fri bruk). Bytt til faktiske Bioform-bilder når du vil.
+  // Demo images (Unsplash – free to use). Replace with actual product shots anytime.
   const PRODUCTS = [
-    {id:"arctic-omega3", name:"Arctic Omega-3", subtitle:"EPA/DHA daglig", category:"Kosttilskudd", image:"https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&auto=format&fit=crop&q=60", description:"Konsentrert fiskeolje. Nøytral smak. For daglig vedlikehold."},
-    {id:"arctic-krill-omega3", name:"Arctic Krill Omega-3", subtitle:"120 kapsler", category:"Kosttilskudd", image:"https://images.unsplash.com/photo-1612536057932-04aa7a9cb7ba?w=1200&auto=format&fit=crop&q=60", description:"Krill-olje i kapsler. Praktisk dagsdose."},
-    {id:"arctic-c-plus", name:"Arctic C+", subtitle:"Vitamin C daglig", category:"Vitaminer", image:"https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=1200&auto=format&fit=crop&q=60", description:"Vitamin C-tabletter for daglig bruk."},
-    {id:"arctic-rosenrot", name:"Arctic Rosenrot", subtitle:"60 kapsler", category:"Urter i kapsler", image:"https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&auto=format&fit=crop&q=60", description:"Rosenrot-urtekapsler."},
-    {id:"arctic-kelp", name:"Arctic Kelp", subtitle:"Jodkilde", category:"Mineraler", image:"https://images.unsplash.com/photo-1548247416-ec66f4900b2f?w=1200&auto=format&fit=crop&q=60", description:"Tangkapsler fra nordlige farvann."},
-    {id:"gurkemeie-k2", name:"Gurkemeie m/K2", subtitle:"120 kapsler", category:"Urter i kapsler", image:"https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=1200&auto=format&fit=crop&q=60", description:"Gurkemeie-kompleks i kapsler."},
-    {id:"mariatistel", name:"Mariatistel", subtitle:"60 kapsler", category:"Urter i kapsler", image:"https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=1200&auto=format&fit=crop&q=60", description:"Mariatistel-urtekapsler."},
-    {id:"blabaer-krekling", name:"Blåbær & Krekling", subtitle:"60 kapsler", category:"Urter i kapsler", image:"https://images.unsplash.com/photo-1623065425901-2bb18ce87140?w=1200&auto=format&fit=crop&q=60", description:"Bærekombinasjon i kapsler."},
-    {id:"ashwagandha", name:"Ashwagandha", subtitle:"60 kapsler", category:"Urter i kapsler", image:"https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=1200&auto=format&fit=crop&q=60", description:"Urtekapsler."},
-    {id:"afrikansk-mango", name:"Afrikansk Mango", subtitle:"60 kapsler", category:"Urter i kapsler", image:"https://images.unsplash.com/photo-1560807707-8cc77767d783?w=1200&auto=format&fit=crop&q=60", description:"Frøekstrakt i kapsler."},
-    {id:"broncilan", name:"Broncilan", subtitle:"200 ml", category:"Urtedrikker", image:"https://images.unsplash.com/photo-1600359756097-c7fe28d80b2d?w=1200&auto=format&fit=crop&q=60", description:"Urtedrikk."},
-    {id:"chaga-ekstrakt", name:"Arctic Chaga ekstrakt", subtitle:"100 ml", category:"Urtedrikker", image:"https://images.unsplash.com/photo-1615486364131-02fa3cd00b1a?w=1200&auto=format&fit=crop&q=60", description:"Ekstrakt fra chaga."},
-    {id:"multi-vitamin", name:"Multivitamin", subtitle:"Daglig", category:"Vitaminer", image:"https://images.unsplash.com/photo-1600434107400-8b98f81b5a67?w=1200&auto=format&fit=crop&q=60", description:"Daglig multivitamin."},
-    {id:"magnesium", name:"Magnesium", subtitle:"250 mg", category:"Mineraler", image:"https://images.unsplash.com/photo-1573883431205-98b5f10d5d2a?w=1200&auto=format&fit=crop&q=60", description:"Magnesiumtabletter."},
-    {id:"d3-vitamin", name:"Vitamin D3", subtitle:"Daglig", category:"Vitaminer", image:"https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=1200&auto=format&fit=crop&q=60", description:"D3-vitamin."}
+    {
+      id:"arctic-omega3", name:"Arctic Omega-3", subtitle:"EPA/DHA daily", category:"Supplements",
+      image:"https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&auto=format&fit=crop&q=60",
+      details:{
+        benefits:[
+          "Concentrated fish oil sourced from cold waters.",
+          "Neutral taste; suitable for daily maintenance.",
+          "Made under controlled quality processes."
+        ],
+        ingredients:"Fish oil (source of EPA/DHA), capsule shell (gelatin, glycerol).",
+        usage:"Adults: 1–2 capsules daily with food. Store cool and dry.",
+        packaging:"Bottle · 120 capsules · Carton data available on request."
+      }
+    },
+    {
+      id:"arctic-krill-omega3", name:"Arctic Krill Omega-3", subtitle:"120 capsules", category:"Supplements",
+      image:"https://images.unsplash.com/photo-1612536057932-04aa7a9cb7ba?w=1200&auto=format&fit=crop&q=60",
+      details:{
+        benefits:[
+          "Krill oil in convenient capsule format.",
+          "Naturally occurring phospholipids.",
+          "Batch traceability available."
+        ],
+        ingredients:"Krill oil, capsule shell (gelatin, glycerol).",
+        usage:"Adults: 1–2 capsules daily with meals.",
+        packaging:"Bottle · 120 capsules."
+      }
+    },
+    {
+      id:"arctic-c-plus", name:"Arctic C+", subtitle:"Daily vitamin C", category:"Vitamins",
+      image:"https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=1200&auto=format&fit=crop&q=60",
+      details:{
+        benefits:[
+          "Practical daily vitamin C tablets.",
+          "For everyday routines and varied diets.",
+          "Clean label, straightforward formulation."
+        ],
+        ingredients:"Vitamin C (ascorbic acid), microcrystalline cellulose, anticaking agents.",
+        usage:"Adults: 1 tablet daily with water.",
+        packaging:"Bottle · 100 tablets."
+      }
+    },
+    {
+      id:"arctic-rosenrot", name:"Arctic Rhodiola", subtitle:"60 capsules", category:"Herbal capsules",
+      image:"https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&auto=format&fit=crop&q=60",
+      details:{
+        benefits:[
+          "Herbal capsule made with Rhodiola root.",
+          "Nordic-inspired selection and sourcing.",
+          "Simple daily format."
+        ],
+        ingredients:"Rhodiola rosea extract, capsule shell (cellulose).",
+        usage:"Adults: 1 capsule daily.",
+        packaging:"Bottle · 60 capsules."
+      }
+    },
+    {
+      id:"arctic-kelp", name:"Arctic Kelp", subtitle:"Natural iodine source", category:"Minerals",
+      image:"https://images.unsplash.com/photo-1548247416-ec66f4900b2f?w=1200&auto=format&fit=crop&q=60",
+      details:{
+        benefits:[
+          "Seaweed capsules inspired by northern waters.",
+          "Straightforward mineral support in capsule form.",
+          "Clean, minimal formula."
+        ],
+        ingredients:"Kelp powder (Ascophyllum/kelp), capsule shell (cellulose).",
+        usage:"Adults: 1 capsule daily with food.",
+        packaging:"Bottle · 90 capsules."
+      }
+    },
+    {
+      id:"gurkemeie-k2", name:"Turmeric Complex w/ K2", subtitle:"120 capsules", category:"Herbal capsules",
+      image:"https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=1200&auto=format&fit=crop&q=60",
+      details:{
+        benefits:[
+          "Turmeric root blend in capsules.",
+          "Balanced formula intended for daily routines.",
+          "Made with attention to raw-material quality."
+        ],
+        ingredients:"Turmeric (Curcuma) powder/extract, vitamin K2 (MK-7), capsule shell.",
+        usage:"Adults: 1–2 capsules daily with meals.",
+        packaging:"Bottle · 120 capsules."
+      }
+    },
+    {
+      id:"mariatistel", name:"Milk Thistle", subtitle:"60 capsules", category:"Herbal capsules",
+      image:"https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=1200&auto=format&fit=crop&q=60",
+      details:{
+        benefits:["Milk thistle herb in capsule form.","Simple composition.","Convenient daily use."],
+        ingredients:"Milk thistle extract (Silybum marianum), capsule shell.",
+        usage:"Adults: 1 capsule daily.",
+        packaging:"Bottle · 60 capsules."
+      }
+    },
+    {
+      id:"blabaer-krekling", name:"Bilberry & Crowberry", subtitle:"60 capsules", category:"Herbal capsules",
+      image:"https://images.unsplash.com/photo-1623065425901-2bb18ce87140?w=1200&auto=format&fit=crop&q=60",
+      details:{
+        benefits:["Nordic berry blend in capsules.","Pleasant, minimal formula.","Made for everyday shelves."],
+        ingredients:"Bilberry and crowberry powders/extracts, capsule shell.",
+        usage:"Adults: 1–2 capsules daily.",
+        packaging:"Bottle · 60 capsules."
+      }
+    },
+    {
+      id:"ashwagandha", name:"Ashwagandha", subtitle:"60 capsules", category:"Herbal capsules",
+      image:"https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=1200&auto=format&fit=crop&q=60",
+      details:{
+        benefits:["Capsules with Withania somnifera root.","Clean, direct labeling.","Nordic packing standards."],
+        ingredients:"Ashwagandha root extract, capsule shell.",
+        usage:"Adults: 1 capsule daily.",
+        packaging:"Bottle · 60 capsules."
+      }
+    },
+    {
+      id:"afrikansk-mango", name:"African Mango", subtitle:"60 capsules", category:"Herbal capsules",
+      image:"https://images.unsplash.com/photo-1560807707-8cc77767d783?w=1200&auto=format&fit=crop&q=60",
+      details:{
+        benefits:["Seed extract in capsule format.","Focused ingredient list.","Shelf-ready packaging."],
+        ingredients:"Irvingia gabonensis seed extract, capsule shell.",
+        usage:"Adults: 1 capsule daily with water.",
+        packaging:"Bottle · 60 capsules."
+      }
+    },
+    {
+      id:"broncilan", name:"Broncilan Herbal Drink", subtitle:"200 ml", category:"Herbal liquids",
+      image:"https://images.unsplash.com/photo-1600359756097-c7fe28d80b2d?w=1200&auto=format&fit=crop&q=60",
+      details:{
+        benefits:["Herbal liquid in a compact bottle.","Pleasant format for store counters.","Nordic made."],
+        ingredients:"Herbal extracts, water, plant-based sweeteners (where applicable).",
+        usage:"As directed on label. Shake before use.",
+        packaging:"Bottle · 200 ml."
+      }
+    },
+    {
+      id:"chaga-ekstrakt", name:"Arctic Chaga Extract", subtitle:"100 ml", category:"Herbal liquids",
+      image:"https://images.unsplash.com/photo-1615486364131-02fa3cd00b1a?w=1200&auto=format&fit=crop&q=60",
+      details:{
+        benefits:["Chaga extract inspired by northern forests.","Compact, easy to stock.","Clear labeling."],
+        ingredients:"Chaga (Inonotus obliquus) extract, water, preservatives as permitted.",
+        usage:"As directed on label.",
+        packaging:"Bottle · 100 ml."
+      }
+    },
+    {
+      id:"multi-vitamin", name:"Multivitamin", subtitle:"Daily", category:"Vitamins",
+      image:"https://images.unsplash.com/photo-1600434107400-8b98f81b5a67?w=1200&auto=format&fit=crop&q=60",
+      details:{
+        benefits:["Everyday multivitamin tablets.","Straightforward daily routine.","Clear ingredient list."],
+        ingredients:"Blend of vitamins and minerals, tableting aids.",
+        usage:"Adults: 1 tablet daily with water.",
+        packaging:"Bottle · 90–120 tablets."
+      }
+    },
+    {
+      id:"magnesium", name:"Magnesium", subtitle:"250 mg", category:"Minerals",
+      image:"https://images.unsplash.com/photo-1573883431205-98b5f10d5d2a?w=1200&auto=format&fit=crop&q=60",
+      details:{
+        benefits:["Magnesium tablets with practical strength.","Neutral profile.","Suitable for general assortment."],
+        ingredients:"Magnesium salt, stabilizers, anticaking agents.",
+        usage:"Adults: 1 tablet daily with water.",
+        packaging:"Bottle · 100 tablets."
+      }
+    },
+    {
+      id:"d3-vitamin", name:"Vitamin D3", subtitle:"Daily", category:"Vitamins",
+      image:"https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=1200&auto=format&fit=crop&q=60",
+      details:{
+        benefits:["Daily vitamin D3 in compact tablets.","Simple formula; easy to stock.","Nordic packing."],
+        ingredients:"Cholecalciferol (vitamin D3), carriers, tableting aids.",
+        usage:"Adults: 1 tablet daily with water.",
+        packaging:"Bottle · 100 tablets."
+      }
+    }
   ];
 
   // --- Helpers ---
@@ -174,7 +370,7 @@
         <div class="sub">${p.subtitle||''}</div>
         <div class="row">
           <span class="pill">${p.category||''}</span>
-          <button class="btn ghost" data-view>Detaljer</button>
+          <button class="btn ghost" data-view>Details</button>
         </div>
       </div>`;
     el.querySelector('[data-view]').onclick = ()=> openModal(p);
@@ -187,37 +383,53 @@
     const addBtn = (label, active=false)=>{
       const b = document.createElement('button'); b.textContent=label; if(active) b.classList.add('active');
       b.onclick = ()=>{ $$('#filters button').forEach(x=>x.classList.remove('active')); b.classList.add('active');
-        renderGrid(label==='Alle' ? PRODUCTS : PRODUCTS.filter(p=>p.category===label)); };
+        renderGrid(label==='All' ? PRODUCTS : PRODUCTS.filter(p=>p.category===label)); };
       filters.appendChild(b);
     };
-    addBtn('Alle', true); cats.forEach(c=> addBtn(c));
+    addBtn('All', true); cats.forEach(c=> addBtn(c));
   }
 
   function renderGrid(list){ const g=$('#grid'); g.innerHTML=''; list.forEach(p=> g.appendChild(cardTemplate(p))); }
+
+  function setTabs(){
+    $$('.tab').forEach(t=>{
+      t.onclick = ()=>{
+        const id = t.dataset.tab;
+        $$('.tab').forEach(x=>x.classList.remove('active'));
+        $$('.panel').forEach(x=>x.classList.remove('active'));
+        t.classList.add('active'); document.getElementById(id).classList.add('active');
+      };
+    });
+  }
 
   function openModal(p){
     $('#mImg').src = p.image; $('#mImg').alt = p.name;
     $('#mTitle').textContent = p.name;
     $('#mSub').textContent = p.subtitle || '';
     $('#mCat').textContent = p.category || '';
-    $('#mDesc').textContent = p.description || '';
-    $('#mShare').onclick = ()=>{ navigator.clipboard.writeText(location.origin+location.pathname+`#${p.id}`); $('#mShare').textContent='Kopiert!'; setTimeout(()=>$('#mShare').textContent='Kopier lenke',1200); };
+
+    // Fill detail tabs
+    const d = p.details || {};
+    document.getElementById('benefits').innerHTML = (d.benefits||[]).length
+      ? `<ul style="margin:0 0 0 18px">${d.benefits.map(x=>`<li>${x}</li>`).join('')}</ul>`
+      : '<p>No information available.</p>';
+    document.getElementById('ingredients').textContent = d.ingredients || 'No information available.';
+    document.getElementById('usage').textContent = d.usage || 'See product label.';
+    document.getElementById('packaging').textContent = d.packaging || 'Standard retail pack.';
+
+    // Tabs + share
+    setTabs();
+    $('#mShare').onclick = ()=>{ navigator.clipboard.writeText(location.origin+location.pathname+`#${p.id}`); $('#mShare').textContent='Copied!'; setTimeout(()=>$('#mShare').textContent='Copy link',1200); };
+
     $('#modal').classList.add('open');
   }
   function closeModal(){ $('#modal').classList.remove('open'); }
 
   // --- Init ---
   (function init(){
-    // Brand/info
     $('#year').textContent = new Date().getFullYear();
     $('#contactEmail').textContent = BRAND.email; $('#contactEmail').href = `mailto:${BRAND.email}`;
     $('#contactPhone').textContent = BRAND.phone;
-
-    // Hero image
-    document.querySelector('.hero-bg').style.backgroundImage =
-      `radial-gradient(1200px 400px at 80% 0%, rgba(116,192,252,.18), transparent),
-       linear-gradient(180deg, rgba(11,13,16,.2), rgba(11,13,16,.75)),
-       url('${HERO_IMAGE}')`;
 
     buildFilters(PRODUCTS);
     renderGrid(PRODUCTS);
