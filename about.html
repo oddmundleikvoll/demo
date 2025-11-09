@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About — Superhuman</title>
+  <style>
+    :root{
+      --bg:#0b0d10; --surface:#12161b; --muted:#a8b3bf; --text:#e8f0f7;
+      --accent:#2FBF71; --accent-2:#74c0fc; --radius:16px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font)}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:900px;margin:0 auto;padding:32px 24px}
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:18px 24px}
+    .logo{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2))}
+    .hero{margin:8px 24px 24px;border:1px solid #1b222a;border-radius:20px;overflow:hidden;background:
+      radial-gradient(1000px 380px at 80% 0%, rgba(116,192,252,.18), transparent),
+      linear-gradient(180deg, rgba(11,13,16,.2), rgba(11,13,16,.8)),
+      url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1920&auto=format&fit=crop');background-size:cover;background-position:center}
+    .hero-inner{padding:56px 28px}
+    h1{font-size:clamp(32px,4vw,48px);margin:0 0 10px}
+    p{line-height:1.6;color:#cfd8e3}
+    .card{background:var(--surface);border:1px solid #1b222a;border-radius:16px;padding:20px;margin-top:16px}
+    .back{display:inline-block;margin-top:18px;padding:10px 14px;border-radius:10px;border:1px solid #2b323a}
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div style="display:flex;gap:10px;align-items:center"><div class="logo"></div><strong>Superhuman</strong></div>
+    <nav><a href="index.html">Home</a></nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner wrap">
+      <h1>About Superhuman</h1>
+      <p>Superhuman is a wholesale exporter of high-quality health supplements at fair prices. We work closely with Nordic manufacturers to curate reliable, store-ready products that are clear on labeling and easy to stock.</p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="card">
+      <h2>What we do</h2>
+      <p>We source and distribute only the best supplements and herbal products from trusted suppliers. Our focus is on consistent quality, transparent documentation, and predictable logistics for retailers and distributors.</p>
+    </div>
+    <div class="card">
+      <h2>Made in the North</h2>
+      <p>Many of the products we carry are crafted in the North, among clean air, rugged coastlines, and wide-open landscapes. The setting inspires careful raw-material selection and a calm, methodical approach to production.</p>
+    </div>
+    <div class="card">
+      <h2>Wholesale & export</h2>
+      <p>As a wholesaler and exporter, we support private labels and multi-market assortments. Need assortments, planograms, or batch documentation? We can help you build the right mix for your shelves.</p>
+    </div>
+
+    <a class="back" href="index.html">← Back to products</a>
+  </main>
+</body>
+</html>
