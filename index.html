@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Superhuman — Health Supplements Wholesale</title>
-  <meta name="description" content="Superhuman is a wholesale exporter of premium health supplements at fair prices." />
+  <title>Superhuman — Wholesale Exporter of Norwegian Health Supplements</title>
+  <meta name="description" content="Superhuman is a wholesale exporter of premium Norwegian health supplements at fair prices." />
   <style>
     :root{
       --bg:#0b0d10; --surface:#12161b; --muted:#a8b3bf; --text:#e8f0f7;
@@ -29,8 +29,8 @@
     .hero-bg{
       position:absolute;inset:0;background:
         radial-gradient(1200px 400px at 80% 0%, rgba(116,192,252,.18), transparent),
-        linear-gradient(180deg, rgba(11,13,16,.2), rgba(11,13,16,.8)),
-        url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1920&auto=format&fit=crop');
+        linear-gradient(180deg, rgba(11,13,16,.25), rgba(11,13,16,.85)),
+        url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1920&auto=format&fit=crop'); /* Dark Norwegian landscape (Lofoten) */
       background-size:cover;background-position:center;
       filter:saturate(.95);
     }
@@ -43,8 +43,8 @@
 
     /* Partner logos */
     .partners{display:flex;align-items:center;gap:16px;margin-top:10px;opacity:.9}
-    .biolab-badge{display:inline-flex;align-items:center;gap:10px;background:#0f1419;border:1px solid #22303b;border-radius:12px;padding:8px 12px}
-    .biolab-badge svg{width:88px;height:22px;display:block}
+    .partner-badge{display:inline-flex;align-items:center;gap:10px;background:#0f1419;border:1px solid #22303b;border-radius:12px;padding:8px 12px}
+    .partner-badge svg{height:22px;display:block}
 
     /* Filters & grid */
     .filters{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 10px}
@@ -89,11 +89,12 @@
   <header class="nav">
     <div class="brand">
       <div class="logo" aria-hidden="true"></div>
-      <span id="brandName">Superhuman · Biolab</span>
+      <span id="brandName">Superhuman · Bioform</span>
     </div>
     <div class="actions">
-      <a class="btn ghost" href="about.html">About us</a>
-      <a class="btn" href="#contact">Contact</a>
+      <a class="btn ghost" href="about.html">About</a>
+      <a class="btn ghost" href="contact.html">Contact</a>
+      <a class="btn" href="#catalog">Browse</a>
     </div>
   </header>
 
@@ -101,25 +102,22 @@
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="hero-inner wrap">
       <div>
-        <span class="tag" id="brandTag">Authorized wholesale / exporter</span>
-        <h1><span class="shine">Superhuman</span> — premium health supplements, fairly priced</h1>
-        <p class="lead">Reliable supply, clear terms, and fast dispatch. Explore a curated selection from trusted Nordic producers.</p>
+        <span class="tag">Authorized wholesale / exporter</span>
+        <h1><span class="shine">Superhuman</span> — premium Norwegian health supplements, fairly priced</h1>
+        <p class="lead">Reliable supply, clear terms, and fast dispatch. Curated assortments from trusted **Norwegian** producers, made in pristine northern surroundings.</p>
         <div class="actions">
-          <button class="btn" id="browseBtn">Browse products</button>
+          <a class="btn" href="#catalog">Browse products</a>
         </div>
 
-        <!-- Partner: Biolab -->
+        <!-- Partner: Bioform (simple inline wordmark + leaf icon) -->
         <div class="partners" aria-label="Partner">
-          <span class="biolab-badge" title="Biolab">
-            <!-- Simple inline 'Biolab' wordmark (SVG) -->
-            <svg viewBox="0 0 420 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="4" y="20" width="96" height="80" rx="16" fill="url(#g)"/>
-              <defs>
-                <linearGradient id="g" x1="4" y1="20" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#2FBF71"/><stop offset="1" stop-color="#74C0FC"/>
-                </linearGradient>
-              </defs>
-              <text x="120" y="78" font-family="Inter, Segoe UI, Arial" font-size="56" font-weight="800" fill="#e8f0f7">Biolab</text>
+          <span class="partner-badge" title="Bioform">
+            <svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g>
+                <path d="M18 3c4 5-1 14-8 14C7 10 12 4 18 3z" fill="#2FBF71"/>
+                <rect x="0" y="0" width="28" height="28" rx="8" fill="none" stroke="#22303b"/>
+              </g>
+              <text x="36" y="20" font-family="Inter, Segoe UI, Arial" font-size="18" font-weight="800" fill="#e8f0f7">Bioform</text>
             </svg>
           </span>
         </div>
@@ -179,16 +177,16 @@
   // --- Company info ---
   const BRAND = { company:"Superhuman", email:"hello@superhuman.global", phone:"+47 00 00 00 00" };
 
-  // Demo images (Unsplash – free to use). Replace with actual product shots anytime.
+  // Demo images (Unsplash – free to use). Replace with real product photos anytime.
   const PRODUCTS = [
     {
       id:"arctic-omega3", name:"Arctic Omega-3", subtitle:"EPA/DHA daily", category:"Supplements",
       image:"https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&auto=format&fit=crop&q=60",
       details:{
         benefits:[
-          "Concentrated fish oil sourced from cold waters.",
+          "Concentrated fish oil from cold Nordic waters.",
           "Neutral taste; suitable for daily maintenance.",
-          "Made under controlled quality processes."
+          "Made under controlled quality processes in Norway."
         ],
         ingredients:"Fish oil (source of EPA/DHA), capsule shell (gelatin, glycerol).",
         usage:"Adults: 1–2 capsules daily with food. Store cool and dry.",
@@ -202,7 +200,7 @@
         benefits:[
           "Krill oil in convenient capsule format.",
           "Naturally occurring phospholipids.",
-          "Batch traceability available."
+          "Batch traceability available – Norwegian packed."
         ],
         ingredients:"Krill oil, capsule shell (gelatin, glycerol).",
         usage:"Adults: 1–2 capsules daily with meals.",
@@ -215,8 +213,8 @@
       details:{
         benefits:[
           "Practical daily vitamin C tablets.",
-          "For everyday routines and varied diets.",
-          "Clean label, straightforward formulation."
+          "Clean label, straightforward formulation.",
+          "Produced in the Nordics."
         ],
         ingredients:"Vitamin C (ascorbic acid), microcrystalline cellulose, anticaking agents.",
         usage:"Adults: 1 tablet daily with water.",
@@ -228,8 +226,8 @@
       image:"https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&auto=format&fit=crop&q=60",
       details:{
         benefits:[
-          "Herbal capsule made with Rhodiola root.",
-          "Nordic-inspired selection and sourcing.",
+          "Herbal capsule with Rhodiola root.",
+          "Nordic-inspired sourcing.",
           "Simple daily format."
         ],
         ingredients:"Rhodiola rosea extract, capsule shell (cellulose).",
@@ -243,10 +241,10 @@
       details:{
         benefits:[
           "Seaweed capsules inspired by northern waters.",
-          "Straightforward mineral support in capsule form.",
-          "Clean, minimal formula."
+          "Straightforward mineral support.",
+          "Packed in Norway."
         ],
-        ingredients:"Kelp powder (Ascophyllum/kelp), capsule shell (cellulose).",
+        ingredients:"Kelp powder (Ascophyllum), capsule shell (cellulose).",
         usage:"Adults: 1 capsule daily with food.",
         packaging:"Bottle · 90 capsules."
       }
@@ -257,10 +255,10 @@
       details:{
         benefits:[
           "Turmeric root blend in capsules.",
-          "Balanced formula intended for daily routines.",
-          "Made with attention to raw-material quality."
+          "Balanced formula for daily routines.",
+          "Norwegian packed; clear labeling."
         ],
-        ingredients:"Turmeric (Curcuma) powder/extract, vitamin K2 (MK-7), capsule shell.",
+        ingredients:"Turmeric powder/extract, vitamin K2 (MK-7), capsule shell.",
         usage:"Adults: 1–2 capsules daily with meals.",
         packaging:"Bottle · 120 capsules."
       }
@@ -269,7 +267,7 @@
       id:"mariatistel", name:"Milk Thistle", subtitle:"60 capsules", category:"Herbal capsules",
       image:"https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=1200&auto=format&fit=crop&q=60",
       details:{
-        benefits:["Milk thistle herb in capsule form.","Simple composition.","Convenient daily use."],
+        benefits:["Milk thistle herb in capsule form.","Simple composition.","Norwegian packed."],
         ingredients:"Milk thistle extract (Silybum marianum), capsule shell.",
         usage:"Adults: 1 capsule daily.",
         packaging:"Bottle · 60 capsules."
@@ -279,7 +277,7 @@
       id:"blabaer-krekling", name:"Bilberry & Crowberry", subtitle:"60 capsules", category:"Herbal capsules",
       image:"https://images.unsplash.com/photo-1623065425901-2bb18ce87140?w=1200&auto=format&fit=crop&q=60",
       details:{
-        benefits:["Nordic berry blend in capsules.","Pleasant, minimal formula.","Made for everyday shelves."],
+        benefits:["Nordic berry blend in capsules.","Pleasant, minimal formula.","Packed in Norway."],
         ingredients:"Bilberry and crowberry powders/extracts, capsule shell.",
         usage:"Adults: 1–2 capsules daily.",
         packaging:"Bottle · 60 capsules."
@@ -309,7 +307,7 @@
       id:"broncilan", name:"Broncilan Herbal Drink", subtitle:"200 ml", category:"Herbal liquids",
       image:"https://images.unsplash.com/photo-1600359756097-c7fe28d80b2d?w=1200&auto=format&fit=crop&q=60",
       details:{
-        benefits:["Herbal liquid in a compact bottle.","Pleasant format for store counters.","Nordic made."],
+        benefits:["Herbal liquid in a compact bottle.","Pleasant format for counters.","Norwegian made/packed."],
         ingredients:"Herbal extracts, water, plant-based sweeteners (where applicable).",
         usage:"As directed on label. Shake before use.",
         packaging:"Bottle · 200 ml."
@@ -408,7 +406,6 @@
     $('#mSub').textContent = p.subtitle || '';
     $('#mCat').textContent = p.category || '';
 
-    // Fill detail tabs
     const d = p.details || {};
     document.getElementById('benefits').innerHTML = (d.benefits||[]).length
       ? `<ul style="margin:0 0 0 18px">${d.benefits.map(x=>`<li>${x}</li>`).join('')}</ul>`
@@ -417,7 +414,6 @@
     document.getElementById('usage').textContent = d.usage || 'See product label.';
     document.getElementById('packaging').textContent = d.packaging || 'Standard retail pack.';
 
-    // Tabs + share
     setTabs();
     $('#mShare').onclick = ()=>{ navigator.clipboard.writeText(location.origin+location.pathname+`#${p.id}`); $('#mShare').textContent='Copied!'; setTimeout(()=>$('#mShare').textContent='Copy link',1200); };
 
@@ -434,7 +430,6 @@
     buildFilters(PRODUCTS);
     renderGrid(PRODUCTS);
 
-    $('#browseBtn').onclick = ()=> document.getElementById('catalog').scrollIntoView({behavior:'smooth'});
     document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeModal(); });
     $$('#modal [data-close]').forEach(el=> el.onclick = closeModal);
 
